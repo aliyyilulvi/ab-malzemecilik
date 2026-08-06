@@ -221,6 +221,12 @@
       "name": "Döner Mekanizma (25cm)",
       "category": "mekanizma",
       "image": "images/products/doner-mekanizma-25cm.jpg"
+    },
+    {
+      "id": "ciftli-mekanizma-22cm",
+      "name": "Çiftli Mekanizma 22cm",
+      "category": "mekanizma",
+      "image": "images/products/ciftli-mekanizma-22cm.jpg"
     }
   ]
 }
