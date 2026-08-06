@@ -221,6 +221,12 @@
       "name": "Omurga Mekanizma (39cm)",
       "category": "mekanizma",
       "image": "images/products/omurga-mekanizma-39cm.jpg"
+    },
+    {
+      "id": "doner-mekanizma-25cm",
+      "name": "Döner Mekanizma (25cm)",
+      "category": "mekanizma",
+      "image": "images/products/doner-mekanizma-25cm.jpg"
     }
   ]
 }
