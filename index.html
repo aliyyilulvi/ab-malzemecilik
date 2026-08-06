@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AB Malzemecilik — Koltuk &amp; Mobilya Yan Sanayi Malzemeleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --steel:#1e2024;
+    --steel-soft:#33363c;
+    --concrete:#eeeae1;
+    --paper:#f7f4ed;
+    --brass:#b8862f;
+    --brass-light:#d7a749;
+    --line:#c9c2b0;
+    --ink:#1e2024;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--concrete);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.02em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px;}
+  .stripe-rule{height:7px;background:repeating-linear-gradient(135deg,var(--brass) 0 16px,var(--steel) 16px 32px);}
+
+  /* ---------- HEADER ---------- */
+  header{position:sticky;top:0;z-index:50;background:var(--steel);border-bottom:3px solid var(--brass);}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:104px;}
+  .logo-img{height:84px;width:auto;}
+  nav ul{list-style:none;display:flex;gap:32px;}
+  nav a{font-size:13.5px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--paper);opacity:0.85;padding-bottom:4px;border-bottom:2px solid transparent;transition:opacity .2s,border-color .2s;}
+  nav a:hover{opacity:1;border-color:var(--brass);}
+  .header-cta{display:flex;align-items:center;gap:8px;background:var(--brass);color:var(--steel);padding:9px 16px;font-size:13px;font-weight:600;border-radius:2px;}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--steel);color:var(--paper);padding:80px 0 0;position:relative;overflow:hidden;}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr 0.95fr;gap:40px;align-items:center;}
+  .hero-copy{padding-bottom:70px;}
+  .eyebrow-tag{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.07em;color:var(--brass-light);border:1px dashed var(--brass-light);padding:6px 12px;margin-bottom:22px;}
+  .eyebrow-tag::before{content:"●";font-size:8px;}
+  .hero h1{font-size:clamp(34px,4.6vw,54px);line-height:1.05;margin-bottom:20px;}
+  .hero h1 span{color:var(--brass-light);}
+  .hero p.lead{font-size:16px;max-width:46ch;color:#cfd0d1;margin-bottom:30px;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:14px 26px;font-family:'Oswald',sans-serif;font-size:13.5px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;transition:transform .15s ease, background .15s ease;border:none;cursor:pointer;}
+  .btn-primary{background:var(--brass);color:var(--steel);}
+  .btn-primary:hover{background:var(--brass-light);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid #6b6f75;color:var(--paper);background:none;}
+  .btn-ghost:hover{border-color:var(--paper);transform:translateY(-2px);}
+  .hero-img{align-self:end;display:flex;justify-content:center;}
+  .hero-img img{width:100%;max-width:440px;margin:0 auto;border-radius:4px 4px 0 0;image-rendering:auto;}
+
+  /* ---------- SECTION HEADS ---------- */
+  .section{padding:84px 0;}
+  section[id]{scroll-margin-top:104px;}
+  .section-head{margin-bottom:40px;max-width:680px;}
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.09em;text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:block;}
+  .section-head h2{font-size:clamp(26px,3.6vw,36px);}
+  .section-head p{margin-top:12px;color:#4a4d52;font-size:15.5px;max-width:58ch;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .about-grid p{color:#3d4045;font-size:15.5px;margin-bottom:16px;}
+  .stat-list{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px;}
+  .stat{border-top:2px solid var(--steel);padding-top:10px;}
+  .stat .num{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:var(--brass);}
+  .stat .label{font-size:12px;letter-spacing:0.03em;color:#5c5f64;text-transform:uppercase;}
+
+  /* ---------- KATEGORİ BAŞLIK ---------- */
+  .cat-heading{display:flex;align-items:baseline;gap:14px;margin:56px 0 20px;}
+  .cat-heading:first-of-type{margin-top:0;}
+  .cat-heading .cat-code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--brass);letter-spacing:0.06em;}
+  .cat-heading h3{font-size:21px;}
+  .cat-heading .cat-count{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8a8d92;}
+
+  /* ---------- PRODUCT GRID ---------- */
+  .product-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+  .product-card{
+    background:none;border:none;
+    padding:0;cursor:pointer;
+    display:block;
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .product-card:hover, .product-card:focus-visible{
+    transform:translateY(-3px);
+    filter:drop-shadow(0 8px 14px rgba(30,32,36,0.16));
+  }
+  .product-thumb{
+    aspect-ratio:1/1;width:100%;background:none;
+    display:flex;align-items:center;justify-content:center;
+    padding:2px;
+  }
+  .product-thumb img{width:100%;height:100%;object-fit:contain;}
+
+  /* ---------- WHY ---------- */
+  .why-band{background:var(--steel-soft);color:var(--paper);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  .why-item{padding:34px 24px;border-left:1px solid #4a4d52;}
+  .why-item:first-child{border-left:none;}
+  .why-item .why-num{font-family:'JetBrains Mono',monospace;color:var(--brass-light);font-size:12px;margin-bottom:12px;display:block;}
+  .why-item h3{font-size:16px;margin-bottom:8px;font-family:'Inter',sans-serif;font-weight:600;text-transform:none;letter-spacing:0;}
+  .why-item p{font-size:13.5px;color:#b7b9bc;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .info-line{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);}
+  .info-line .k{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--brass);letter-spacing:0.06em;width:100px;flex-shrink:0;text-transform:uppercase;padding-top:2px;}
+  .info-line .v{font-size:15px;color:var(--ink);}
+  .contact-buttons{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;}
+  .wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 22px;font-weight:600;font-size:14px;border-radius:3px;}
+  .fb-btn{display:inline-flex;align-items:center;gap:10px;background:#1877F2;color:#fff;padding:13px 22px;font-weight:600;font-size:14px;border-radius:3px;}
+  .contact-logo{background:var(--steel);padding:48px;display:flex;align-items:center;justify-content:center;}
+  .contact-logo img{max-width:340px;width:100%;}
+
+  footer{background:var(--steel);color:#9a9da2;padding:36px 0;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer .logo-img{height:52px;}
+  footer small{font-size:12.5px;}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(20,18,15,0.86);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;z-index:100;
+  }
+  .lightbox[hidden]{display:none;}
+  .lightbox-inner{
+    background:#fff;max-width:560px;width:100%;
+    padding:20px;position:relative;
+    max-height:90vh;overflow:auto;
+  }
+  .lightbox-inner img{width:100%;object-fit:contain;max-height:60vh;background:#fff;}
+  .lightbox-caption{margin-top:14px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:16px;letter-spacing:0.02em;}
+  .lightbox-close{
+    position:absolute;top:10px;right:10px;
+    width:34px;height:34px;border:none;background:var(--steel);color:var(--paper);
+    font-size:18px;cursor:pointer;border-radius:2px;
+  }
+  .lightbox-close:hover{background:var(--brass);color:var(--steel);}
+
+  @media(max-width:900px){
+    nav{display:none;}
+    .header-cta{display:none;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-img{order:-1;}
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .product-grid{grid-template-columns:repeat(3,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .why-item{border-left:none;border-top:1px solid #4a4d52;}
+    .why-item:first-child{border-top:none;}
+  }
+  @media(max-width:560px){
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none !important;}}
+  :focus-visible{outline:2px solid var(--brass-light);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="#anasayfa"><img class="logo-img" src="images/logo.png" alt="AB Malzemecilik logo"></a>
+    <nav>
+      <ul>
+        <li><a href="#anasayfa">Anasayfa</a></li>
+        <li><a href="#urunler">Ürünler</a></li>
+        <li><a href="#hakkimizda">Hakkımızda</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+    </nav>
+    <a class="header-cta" href="https://wa.me/905366247756" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+  </div>
+</header>
+<div class="stripe-rule"></div>
+
+<section class="hero" id="anasayfa">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow-tag">TOPTAN SATIŞ · HIZLI SEVKİYAT</span>
+      <h1>Koltuk ve mobilya<br>yan sanayine <span>tam destek.</span></h1>
+      <p class="lead">Berjer ayağından mekanizmaya, pistondan aksesuara kadar üreticinin ihtiyaç duyduğu her parça AB Malzemecilik'te.</p>
+      <div class="btn-row">
+        <a href="https://wa.me/905366247756" target="_blank" rel="noopener" class="btn btn-primary">WhatsApp'tan Sipariş</a>
+        <a href="#urunler" class="btn btn-ghost">Ürünleri İncele</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/hero-sofa.jpg" alt="AB Malzemecilik üretim örneği koltuk">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hakkimizda">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="kicker">Hakkımızda</span>
+        <h2>Mobilya üreticisinin<br>güvendiği tedarikçi</h2>
+      </div>
+      <div>
+        <p>AB Malzemecilik olarak koltuk ve mobilya yan sanayine yönelik metal ayak, mekanizma, piston ve bağlantı aksesuarları tedarik ediyoruz. Berjer ve koltuk üreticilerinin ihtiyaç duyduğu geniş ürün gamını tek noktadan sunuyoruz.</p>
+        <p>Farklı ölçü ve modellerdeki ayak ve mekanizma seçenekleriyle üretim hattınızın aksamadan devam etmesini sağlıyoruz.</p>
+        <div class="stat-list">
+          <div class="stat"><div class="num">4</div><div class="label">Ana Ürün Grubu</div></div>
+          <div class="stat"><div class="num">33+</div><div class="label">Parça Çeşidi</div></div>
+          <div class="stat"><div class="num">Hızlı</div><div class="label">Sevkiyat</div></div>
+          <div class="stat"><div class="num">Toptan</div><div class="label">Satış</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-rule"></div>
+
+<section class="section" id="urunler" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Ürün Grupları</span>
+      <h2>Katalog</h2>
+      <p>Bir görsele tıklayarak ürünü büyük boyutta görebilirsiniz.</p>
+    </div>
+    <div id="catalog-root">
+      <p class="mono" style="color:#8a8d92;font-size:13px;">Ürünler yükleniyor...</p>
+    </div>
+  </div>
+</section>
+
+<section class="section why-band">
+  <div class="wrap">
+    <div class="section-head" style="color:var(--paper);">
+      <span class="kicker" style="color:var(--brass-light);">Neden AB Malzemecilik</span>
+      <h2>Üreticinin yanında</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><span class="why-num">01</span><h3>Geniş Ürün Gamı</h3><p>33'ten fazla ayak, mekanizma ve aksesuar çeşidi tek noktada.</p></div>
+      <div class="why-item"><span class="why-num">02</span><h3>Toptan Fiyat</h3><p>Üretici ve atölyelere özel toptan satış avantajı.</p></div>
+      <div class="why-item"><span class="why-num">03</span><h3>Hızlı Sevkiyat</h3><p>Siparişleriniz kısa sürede hazırlanır ve gönderilir.</p></div>
+      <div class="why-item"><span class="why-num">04</span><h3>WhatsApp Destek</h3><p>Sipariş ve stok sorularınıza anında dönüş.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="iletisim">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">İletişim</span>
+      <h2>Bize ulaşın</h2>
+      <p>Sipariş, stok durumu veya fiyat teklifi için WhatsApp üzerinden hızlıca yazabilirsiniz.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="info-line"><span class="k">Telefon</span><span class="v">+90 536 624 77 56</span></div>
+        <div class="info-line"><span class="k">WhatsApp</span><span class="v">+90 536 624 77 56</span></div>
+        <div class="info-line"><span class="k">Facebook</span><span class="v">facebook.com/abmalzeme</span></div>
+        <div class="contact-buttons">
+          <a class="wa-btn" href="https://wa.me/905366247756" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+          <a class="fb-btn" href="https://www.facebook.com/abmalzeme/" target="_blank" rel="noopener">Facebook'ta Takip Et</a>
+        </div>
+      </div>
+      <div class="contact-logo">
+        <img src="images/logo.png" alt="AB Malzemecilik logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img class="logo-img" src="images/logo.png" alt="AB Malzemecilik logo">
+    <small>© 2026 AB Malzemecilik. Tüm hakları saklıdır.</small>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Kapat">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCaption = document.getElementById('lightbox-caption');
+  const lbClose = document.getElementById('lightbox-close');
+  let lastFocused = null;
+
+  function bindCard(card){
+    card.addEventListener('click', function(){
+      lastFocused = card;
+      lbImg.src = card.dataset.img;
+      lbImg.alt = card.dataset.name;
+      lbCaption.textContent = card.dataset.name;
+      lightbox.hidden = false;
+      lbClose.focus();
+    });
+  }
+  document.querySelectorAll('.product-card').forEach(bindCard);
+
+  // ---- Katalogu data/products.json'dan yükle ----
+  fetch('data/products.json?_=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      const root = document.getElementById('catalog-root');
+      if(!root) return;
+      root.innerHTML = '';
+      data.categories.forEach(function(cat, idx){
+        const items = data.products.filter(function(p){ return p.category === cat.id; });
+        if(items.length === 0) return;
+        const heading = document.createElement('div');
+        heading.className = 'cat-heading';
+        heading.innerHTML = '<span class="cat-code">GRUP.' + String(idx+1).padStart(2,'0') + '</span><h3>' + cat.title + '</h3><span class="cat-count">' + items.length + ' ürün</span>';
+        root.appendChild(heading);
+
+        const grid = document.createElement('div');
+        grid.className = 'product-grid';
+        items.forEach(function(p){
+          const btn = document.createElement('button');
+          btn.className = 'product-card';
+          btn.dataset.img = p.image;
+          btn.dataset.name = p.name;
+          btn.innerHTML = '<span class="product-thumb"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></span>';
+          bindCard(btn);
+          grid.appendChild(btn);
+        });
+        root.appendChild(grid);
+      });
+    })
+    .catch(function(err){
+      const root = document.getElementById('catalog-root');
+      if(root) root.innerHTML = '<p class="mono" style="color:#b8862f;font-size:13px;">Ürünler yüklenemedi. Sayfayı bir web sunucusu üzerinden açtığınızdan emin olun (dosyayı doğrudan çift tıklayarak açmak bu bölümü çalıştırmaz).</p>';
+      console.error(err);
+    });
+
+  function closeLightbox(){
+    lightbox.hidden = true;
+    lbImg.src = '';
+    if(lastFocused) lastFocused.focus();
+  }
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+</script>
+
+</body>
+</html>

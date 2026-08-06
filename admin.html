@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AB Malzemecilik — Ürün Yönetimi</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --steel:#1e2024; --steel-soft:#33363c; --concrete:#eeeae1;
+    --brass:#b8862f; --brass-light:#d7a749; --line:#c9c2b0; --ink:#1e2024;
+    --ok:#2f7d3c; --err:#b3261e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--concrete);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;}
+  h1,h2{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.02em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:var(--brass);}
+  .wrap{max-width:900px;margin:0 auto;padding:36px 24px 80px;}
+  header{background:var(--steel);color:#f7f4ed;padding:22px 0;border-bottom:3px solid var(--brass);}
+  header .wrap{padding:0 24px;display:flex;align-items:center;justify-content:space-between;}
+  header img{height:42px;}
+  header .badge{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--brass-light);border:1px dashed var(--brass-light);padding:5px 10px;}
+
+  .panel{background:#fff;border:1px solid var(--line);padding:26px;margin-bottom:24px;}
+  .panel h2{font-size:19px;margin-bottom:6px;}
+  .panel .hint{font-size:13px;color:#5c5f64;margin-bottom:18px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#6b5c4b;margin-bottom:6px;}
+  .field input, .field select{
+    width:100%;border:1px solid var(--line);background:#fff;padding:10px 12px;
+    font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);
+  }
+  .field input:focus, .field select:focus{outline:2px solid var(--brass);outline-offset:1px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn{
+    display:inline-block;border:none;cursor:pointer;
+    padding:12px 22px;font-family:'Oswald',sans-serif;font-size:13.5px;font-weight:600;
+    letter-spacing:0.04em;text-transform:uppercase;background:var(--brass);color:var(--steel);
+    transition:background .15s;
+  }
+  .btn:hover{background:var(--brass-light);}
+  .btn:disabled{background:#c9c2b0;cursor:not-allowed;}
+  .btn-secondary{background:none;border:1px solid var(--line);color:var(--ink);}
+  .btn-secondary:hover{border-color:var(--ink);background:none;}
+  .btn-danger{background:none;border:1px solid var(--err);color:var(--err);padding:6px 12px;font-size:11.5px;}
+  .btn-danger:hover{background:var(--err);color:#fff;}
+
+  .status{margin-top:12px;font-size:13.5px;padding:10px 12px;display:none;}
+  .status.ok{display:block;background:#eaf5ec;color:var(--ok);border:1px solid #bfe2c6;}
+  .status.err{display:block;background:#fbeceb;color:var(--err);border:1px solid #f1c3c0;}
+  .status.info{display:block;background:#f2f0ea;color:#5c5f64;border:1px solid var(--line);}
+
+  #connected-bar{display:none;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  #connected-bar.show{display:flex;}
+  #connect-form.hide{display:none;}
+
+  .product-list{list-style:none;margin-top:8px;}
+  .product-list li{
+    display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);
+  }
+  .product-list img{width:52px;height:52px;object-fit:contain;background:#f7f4ed;border:1px solid var(--line);flex-shrink:0;}
+  .product-list .meta{flex:1;min-width:0;}
+  .product-list .meta .name{font-weight:600;font-size:14px;}
+  .product-list .meta .cat{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8a8d92;}
+
+  .preview{margin-top:10px;display:none;}
+  .preview.show{display:block;}
+  .preview img{max-width:140px;max-height:140px;object-fit:contain;border:1px solid var(--line);background:#f7f4ed;}
+
+  .token-warning{
+    background:#fbf3e6;border:1px solid #e6c98f;color:#6b4e12;
+    padding:12px 14px;font-size:13px;margin-bottom:18px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <img src="images/logo.png" alt="AB Malzemecilik logo">
+    <span class="badge">ÜRÜN YÖNETİMİ</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="panel">
+    <h2>GitHub Bağlantısı</h2>
+    <p class="hint">Bu panel şifreyle değil, GitHub'a bağlanarak çalışır — çünkü site ücretsiz GitHub Pages üzerinde barınıyor ve ayrı bir sunucusu yok. Ürün eklediğinizde değişiklik doğrudan reponuza kaydedilir ve siteye birkaç dakika içinde yansır.</p>
+    <div class="token-warning">
+      <strong>Güvenlik notu:</strong> Aşağıya gireceğiniz "erişim anahtarı" (token) reponuza yazma yetkisi verir. Bu sayfanın linkini ve anahtarınızı kimseyle paylaşmayın. Anahtar yalnızca bu tarayıcı sekmesinde tutulur, kapattığınızda silinir.
+      <br><br>
+      Anahtar almak için: GitHub'da sağ üstteki profil fotoğrafınıza tıklayın → <strong>Settings</strong> → en alttaki <strong>Developer settings</strong> → <strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong> → <strong>Generate new token (classic)</strong>. "repo" kutucuğunu işaretleyip oluşturun, çıkan kodu buraya yapıştırın.
+    </div>
+
+    <form id="connect-form">
+      <div class="row2">
+        <div class="field">
+          <label for="gh-owner">GitHub Kullanıcı Adı</label>
+          <input id="gh-owner" type="text" placeholder="örn: aliyyiluvi" required>
+        </div>
+        <div class="field">
+          <label for="gh-repo">Repo Adı</label>
+          <input id="gh-repo" type="text" placeholder="örn: ab-malzemecilik" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="gh-branch">Branch</label>
+        <input id="gh-branch" type="text" value="main">
+      </div>
+      <div class="field">
+        <label for="gh-token">Erişim Anahtarı (Token)</label>
+        <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxx" required>
+      </div>
+      <button class="btn" type="submit">Bağlan</button>
+      <div id="connect-status" class="status"></div>
+    </form>
+
+    <div id="connected-bar">
+      <div class="status ok" style="display:block;">Bağlandı: <span id="connected-repo" class="mono"></span></div>
+      <button class="btn btn-secondary" id="disconnect-btn" type="button">Bağlantıyı Kes</button>
+    </div>
+  </div>
+
+  <div class="panel" id="add-panel" style="display:none;">
+    <h2>Yeni Ürün Ekle</h2>
+    <p class="hint">Ürün adını yazın, kategori seçin, fotoğrafı seçin ve ekleyin. Birkaç saniye sonra sitede görünür.</p>
+    <form id="add-form">
+      <div class="row2">
+        <div class="field">
+          <label for="p-name">Ürün Adı</label>
+          <input id="p-name" type="text" required placeholder="örn: Vidalı Ayak">
+        </div>
+        <div class="field">
+          <label for="p-cat">Kategori</label>
+          <select id="p-cat" required></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="p-image">Ürün Fotoğrafı</label>
+        <input id="p-image" type="file" accept="image/*" required>
+        <div class="preview" id="p-preview"><img id="p-preview-img" alt=""></div>
+      </div>
+      <button class="btn" type="submit" id="add-submit">Ürünü Ekle</button>
+      <div id="add-status" class="status"></div>
+    </form>
+  </div>
+
+  <div class="panel" id="list-panel" style="display:none;">
+    <h2>Mevcut Ürünler</h2>
+    <p class="hint">Bir ürünü silmek için yanındaki "Sil" butonuna basın.</p>
+    <div id="list-status" class="status"></div>
+    <ul class="product-list" id="product-list"></ul>
+  </div>
+
+</div>
+
+<script>
+  const API = 'https://api.github.com';
+  let session = null; // { owner, repo, branch, token }
+
+  const connectForm = document.getElementById('connect-form');
+  const connectStatus = document.getElementById('connect-status');
+  const connectedBar = document.getElementById('connected-bar');
+  const connectedRepo = document.getElementById('connected-repo');
+  const addPanel = document.getElementById('add-panel');
+  const listPanel = document.getElementById('list-panel');
+
+  function setStatus(el, msg, type){
+    el.textContent = msg;
+    el.className = 'status ' + type;
+  }
+
+  function ghHeaders(){
+    return {
+      'Authorization': 'token ' + session.token,
+      'Accept': 'application/vnd.github+json'
+    };
+  }
+
+  async function ghGetFile(path){
+    const url = API + '/repos/' + session.owner + '/' + session.repo + '/contents/' + path + '?ref=' + encodeURIComponent(session.branch);
+    const res = await fetch(url, { headers: ghHeaders() });
+    if(!res.ok) throw new Error('Dosya okunamadı (' + path + '): HTTP ' + res.status);
+    return res.json(); // { content(base64), sha, ... }
+  }
+
+  async function ghPutFile(path, base64Content, message, sha){
+    const url = API + '/repos/' + session.owner + '/' + session.repo + '/contents/' + path;
+    const body = {
+      message: message,
+      content: base64Content,
+      branch: session.branch
+    };
+    if(sha) body.sha = sha;
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: Object.assign({'Content-Type':'application/json'}, ghHeaders()),
+      body: JSON.stringify(body)
+    });
+    if(!res.ok){
+      const err = await res.json().catch(function(){ return {}; });
+      throw new Error('Kaydedilemedi: HTTP ' + res.status + ' ' + (err.message || ''));
+    }
+    return res.json();
+  }
+
+  async function ghDeleteFile(path, message, sha){
+    const url = API + '/repos/' + session.owner + '/' + session.repo + '/contents/' + path;
+    const res = await fetch(url, {
+      method: 'DELETE',
+      headers: Object.assign({'Content-Type':'application/json'}, ghHeaders()),
+      body: JSON.stringify({ message: message, sha: sha, branch: session.branch })
+    });
+    if(!res.ok){
+      throw new Error('Silinemedi: HTTP ' + res.status);
+    }
+  }
+
+  function b64EncodeUnicode(str){
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  function b64DecodeUnicode(str){
+    return decodeURIComponent(escape(atob(str)));
+  }
+
+  function slugify(name){
+    const map = {'ç':'c','Ç':'c','ğ':'g','Ğ':'g','ı':'i','İ':'i','ö':'o','Ö':'o','ş':'s','Ş':'s','ü':'u','Ü':'u'};
+    let s = name.split('').map(function(ch){ return map[ch] || ch; }).join('');
+    s = s.toLowerCase().trim();
+    s = s.replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    return s || ('urun-' + Date.now());
+  }
+
+  // ---- Bağlan ----
+  connectForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const owner = document.getElementById('gh-owner').value.trim();
+    const repo = document.getElementById('gh-repo').value.trim();
+    const branch = document.getElementById('gh-branch').value.trim() || 'main';
+    const token = document.getElementById('gh-token').value.trim();
+    setStatus(connectStatus, 'Bağlanılıyor...', 'info');
+    session = { owner: owner, repo: repo, branch: branch, token: token };
+    try{
+      await ghGetFile('data/products.json');
+      setStatus(connectStatus, 'Bağlantı başarılı.', 'ok');
+      connectForm.classList.add('hide');
+      connectedBar.classList.add('show');
+      connectedRepo.textContent = owner + '/' + repo + ' (' + branch + ')';
+      addPanel.style.display = 'block';
+      listPanel.style.display = 'block';
+      await loadCatalog();
+    }catch(err){
+      session = null;
+      setStatus(connectStatus, 'Bağlanılamadı: ' + err.message + ' — kullanıcı adı, repo adı ve anahtarı kontrol edin.', 'err');
+    }
+  });
+
+  document.getElementById('disconnect-btn').addEventListener('click', function(){
+    session = null;
+    connectForm.classList.remove('hide');
+    connectedBar.classList.remove('show');
+    addPanel.style.display = 'none';
+    listPanel.style.display = 'none';
+    connectForm.reset();
+    setStatus(connectStatus, '', 'info');
+    connectStatus.className = 'status';
+  });
+
+  // ---- Katalog yükle ----
+  let catalogCache = null;
+  let catalogSha = null;
+
+  async function loadCatalog(){
+    const listStatus = document.getElementById('list-status');
+    setStatus(listStatus, 'Ürünler yükleniyor...', 'info');
+    try{
+      const file = await ghGetFile('data/products.json');
+      catalogSha = file.sha;
+      catalogCache = JSON.parse(b64DecodeUnicode(file.content));
+
+      const catSelect = document.getElementById('p-cat');
+      catSelect.innerHTML = '';
+      catalogCache.categories.forEach(function(c){
+        const opt = document.createElement('option');
+        opt.value = c.id; opt.textContent = c.title;
+        catSelect.appendChild(opt);
+      });
+
+      renderList();
+      listStatus.className = 'status';
+    }catch(err){
+      setStatus(listStatus, 'Ürünler yüklenemedi: ' + err.message, 'err');
+    }
+  }
+
+  function renderList(){
+    const ul = document.getElementById('product-list');
+    ul.innerHTML = '';
+    catalogCache.products.forEach(function(p){
+      const cat = catalogCache.categories.find(function(c){ return c.id === p.category; });
+      const li = document.createElement('li');
+      li.innerHTML =
+        '<img src="' + p.image + '" alt="">' +
+        '<div class="meta"><div class="name">' + p.name + '</div><div class="cat">' + (cat ? cat.title : p.category) + '</div></div>' +
+        '<button class="btn-danger" data-id="' + p.id + '">Sil</button>';
+      li.querySelector('button').addEventListener('click', function(){ deleteProduct(p.id); });
+      ul.appendChild(li);
+    });
+  }
+
+  // ---- Ürün ekle ----
+  const addForm = document.getElementById('add-form');
+  const imageInput = document.getElementById('p-image');
+  const preview = document.getElementById('p-preview');
+  const previewImg = document.getElementById('p-preview-img');
+
+  imageInput.addEventListener('change', function(){
+    const file = imageInput.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(){ previewImg.src = reader.result; preview.classList.add('show'); };
+    reader.readAsDataURL(file);
+  });
+
+  function resizeImageToBase64(file, maxDim){
+    return new Promise(function(resolve, reject){
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = function(){
+        img.onload = function(){
+          let w = img.width, h = img.height;
+          if(w > maxDim || h > maxDim){
+            if(w > h){ h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0,0,w,h);
+          ctx.drawImage(img, 0, 0, w, h);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+          resolve(dataUrl.split(',')[1]);
+        };
+        img.onerror = reject;
+        img.src = reader.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  addForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const addStatus = document.getElementById('add-status');
+    const submitBtn = document.getElementById('add-submit');
+    const name = document.getElementById('p-name').value.trim();
+    const category = document.getElementById('p-cat').value;
+    const file = imageInput.files[0];
+    if(!name || !file){ setStatus(addStatus, 'Lütfen ürün adı ve fotoğraf seçin.', 'err'); return; }
+
+    submitBtn.disabled = true;
+    setStatus(addStatus, 'Fotoğraf hazırlanıyor...', 'info');
+    try{
+      const base64 = await resizeImageToBase64(file, 900);
+      let id = slugify(name);
+      const existingIds = new Set(catalogCache.products.map(function(p){ return p.id; }));
+      let uniqueId = id, i = 2;
+      while(existingIds.has(uniqueId)){ uniqueId = id + '-' + i; i++; }
+      const imagePath = 'images/products/' + uniqueId + '.jpg';
+
+      setStatus(addStatus, 'Fotoğraf yükleniyor...', 'info');
+      await ghPutFile(imagePath, base64, 'Ürün fotoğrafı eklendi: ' + name);
+
+      setStatus(addStatus, 'Katalog güncelleniyor...', 'info');
+      const fresh = await ghGetFile('data/products.json');
+      const freshData = JSON.parse(b64DecodeUnicode(fresh.content));
+      freshData.products.push({ id: uniqueId, name: name, category: category, image: imagePath });
+      const newContent = b64EncodeUnicode(JSON.stringify(freshData, null, 2));
+      await ghPutFile('data/products.json', newContent, 'Ürün eklendi: ' + name, fresh.sha);
+
+      catalogCache = freshData;
+      renderList();
+      setStatus(addStatus, '"' + name + '" eklendi. Site birkaç dakika içinde güncellenecek.', 'ok');
+      addForm.reset();
+      preview.classList.remove('show');
+    }catch(err){
+      setStatus(addStatus, 'Hata: ' + err.message, 'err');
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+
+  // ---- Ürün sil ----
+  async function deleteProduct(id){
+    if(!confirm('Bu ürünü silmek istediğinize emin misiniz?')) return;
+    const listStatus = document.getElementById('list-status');
+    setStatus(listStatus, 'Siliniyor...', 'info');
+    try{
+      const fresh = await ghGetFile('data/products.json');
+      const freshData = JSON.parse(b64DecodeUnicode(fresh.content));
+      const product = freshData.products.find(function(p){ return p.id === id; });
+      freshData.products = freshData.products.filter(function(p){ return p.id !== id; });
+      const newContent = b64EncodeUnicode(JSON.stringify(freshData, null, 2));
+      await ghPutFile('data/products.json', newContent, 'Ürün silindi: ' + (product ? product.name : id), fresh.sha);
+      catalogCache = freshData;
+      renderList();
+      setStatus(listStatus, 'Silindi.', 'ok');
+    }catch(err){
+      setStatus(listStatus, 'Hata: ' + err.message, 'err');
+    }
+  }
+</script>
+
+</body>
+</html>
