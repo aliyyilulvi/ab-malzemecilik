@@ -91,12 +91,6 @@
       "image": "images/products/6-kademeli-baslik.jpg"
     },
     {
-      "id": "doner-mekanizma",
-      "name": "Döner Mekanizma",
-      "category": "mekanizma",
-      "image": "images/products/doner-mekanizma.jpg"
-    },
-    {
       "id": "sirt-atlama",
       "name": "Sırt Atlama",
       "category": "mekanizma",
