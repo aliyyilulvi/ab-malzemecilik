@@ -1,46 +1,226 @@
 {
   "categories": [
-    { "id": "berjer", "title": "Berjer Metal Ayaklar" },
-    { "id": "mekanizma", "title": "Mekanizmalar" },
-    { "id": "piston", "title": "Piston & Aksesuar" },
-    { "id": "koltuk", "title": "Koltuk Metal Ayaklar" }
+    {
+      "id": "berjer",
+      "title": "Berjer Metal Ayaklar"
+    },
+    {
+      "id": "mekanizma",
+      "title": "Mekanizmalar"
+    },
+    {
+      "id": "piston",
+      "title": "Piston & Aksesuar"
+    },
+    {
+      "id": "koltuk",
+      "title": "Koltuk Metal Ayaklar"
+    }
   ],
   "products": [
-    { "id": "orumcek-ayak", "name": "Örümcek Ayak", "category": "berjer", "image": "images/products/orumcek-ayak.jpg" },
-    { "id": "elips-ayak", "name": "Elips Ayak", "category": "berjer", "image": "images/products/elips-ayak.jpg" },
-    { "id": "arti-ayak", "name": "Artı Ayak", "category": "berjer", "image": "images/products/arti-ayak.jpg" },
-    { "id": "cember-ayak", "name": "Çember Ayak", "category": "berjer", "image": "images/products/cember-ayak.jpg" },
-    { "id": "tepsi-ayak", "name": "Tepsi Ayak", "category": "berjer", "image": "images/products/tepsi-ayak.jpg" },
-
-    { "id": "l24-kademeli", "name": "L24 Kademeli (24cm)", "category": "mekanizma", "image": "images/products/l24-kademeli.jpg" },
-    { "id": "l24-genis", "name": "L24 Geniş (22cm)", "category": "mekanizma", "image": "images/products/l24-genis.jpg" },
-    { "id": "l24-dar", "name": "L24 Dar (24cm)", "category": "mekanizma", "image": "images/products/l24-dar.jpg" },
-    { "id": "l40-genis", "name": "L40 Geniş (28cm)", "category": "mekanizma", "image": "images/products/l40-genis.jpg" },
-    { "id": "ciftli-22cm", "name": "Çiftli 22cm", "category": "mekanizma", "image": "images/products/ciftli-22cm.jpg" },
-    { "id": "ciftli-26cm", "name": "Çiftli 26cm", "category": "mekanizma", "image": "images/products/ciftli-26cm.jpg" },
-    { "id": "6-kademeli-baslik", "name": "6 Kademeli Başlık", "category": "mekanizma", "image": "images/products/6-kademeli-baslik.jpg" },
-    { "id": "doner-mekanizma", "name": "Döner Mekanizma", "category": "mekanizma", "image": "images/products/doner-mekanizma.jpg" },
-    { "id": "sirt-atlama", "name": "Sırt Atlama", "category": "mekanizma", "image": "images/products/sirt-atlama.jpg" },
-    { "id": "baza-makasi", "name": "Baza Makası", "category": "mekanizma", "image": "images/products/baza-makasi.jpg" },
-    { "id": "sirt-kaldirma", "name": "Sırt Kaldırma", "category": "mekanizma", "image": "images/products/sirt-kaldirma.jpg" },
-
-    { "id": "piston-750-1200", "name": "Piston (750N–1000N–1200N)", "category": "piston", "image": "images/products/piston.jpg" },
-    { "id": "z-makas", "name": "Z Makas", "category": "piston", "image": "images/products/z-makas.jpg" },
-    { "id": "baza-kizak", "name": "Baza Kızak (12–15–19cm)", "category": "piston", "image": "images/products/baza-kizak.jpg" },
-    { "id": "sandik-makasi", "name": "Sandık Makası", "category": "piston", "image": "images/products/sandik-makasi.jpg" },
-    { "id": "baglanti-saci", "name": "Bağlantı Sacı (7x7–10x10)", "category": "piston", "image": "images/products/baglanti-saci.jpg" },
-    { "id": "elastik-kolon", "name": "Elastik Kolon (5cm/7cm)", "category": "piston", "image": "images/products/elastik-kolon.jpg" },
-    { "id": "birlestirme", "name": "Birleştirme", "category": "piston", "image": "images/products/birlestirme.jpg" },
-    { "id": "genel-aksesuar", "name": "Genel Aksesuarlar", "category": "piston", "image": "images/products/genel-aksesuar.jpg" },
-
-    { "id": "kilic-ayak", "name": "Kılıç Ayak", "category": "koltuk", "image": "images/products/kilic-ayak.jpg" },
-    { "id": "sahin-ayak", "name": "Şahin Ayak", "category": "koltuk", "image": "images/products/sahin-ayak.jpg" },
-    { "id": "kartal-ayak", "name": "Kartal Ayak", "category": "koltuk", "image": "images/products/kartal-ayak.jpg" },
-    { "id": "catal-ayak", "name": "Çatal Ayak", "category": "koltuk", "image": "images/products/catal-ayak.jpg" },
-    { "id": "mil-ayak", "name": "Mil Ayak", "category": "koltuk", "image": "images/products/mil-ayak.jpg" },
-    { "id": "konik-ayak", "name": "Konik Ayak", "category": "koltuk", "image": "images/products/konik-ayak.jpg" },
-    { "id": "tekne-ayak", "name": "Tekne Ayak", "category": "koltuk", "image": "images/products/tekne-ayak.jpg" },
-    { "id": "bonj-ayaklar", "name": "Bonj Ayaklar", "category": "koltuk", "image": "images/products/bonj-ayaklar.jpg" },
-    { "id": "lama-ayak", "name": "Lama Ayak", "category": "koltuk", "image": "images/products/lama-ayak.jpg" }
+    {
+      "id": "orumcek-ayak",
+      "name": "Örümcek Ayak",
+      "category": "berjer",
+      "image": "images/products/orumcek-ayak.jpg"
+    },
+    {
+      "id": "elips-ayak",
+      "name": "Elips Ayak",
+      "category": "berjer",
+      "image": "images/products/elips-ayak.jpg"
+    },
+    {
+      "id": "arti-ayak",
+      "name": "Artı Ayak",
+      "category": "berjer",
+      "image": "images/products/arti-ayak.jpg"
+    },
+    {
+      "id": "cember-ayak",
+      "name": "Çember Ayak",
+      "category": "berjer",
+      "image": "images/products/cember-ayak.jpg"
+    },
+    {
+      "id": "tepsi-ayak",
+      "name": "Tepsi Ayak",
+      "category": "berjer",
+      "image": "images/products/tepsi-ayak.jpg"
+    },
+    {
+      "id": "l24-kademeli",
+      "name": "L24 Kademeli (24cm)",
+      "category": "mekanizma",
+      "image": "images/products/l24-kademeli.jpg"
+    },
+    {
+      "id": "l24-genis",
+      "name": "L24 Geniş (22cm)",
+      "category": "mekanizma",
+      "image": "images/products/l24-genis.jpg"
+    },
+    {
+      "id": "l24-dar",
+      "name": "L24 Dar (24cm)",
+      "category": "mekanizma",
+      "image": "images/products/l24-dar.jpg"
+    },
+    {
+      "id": "l40-genis",
+      "name": "L40 Geniş (28cm)",
+      "category": "mekanizma",
+      "image": "images/products/l40-genis.jpg"
+    },
+    {
+      "id": "ciftli-22cm",
+      "name": "Çiftli 22cm",
+      "category": "mekanizma",
+      "image": "images/products/ciftli-22cm.jpg"
+    },
+    {
+      "id": "ciftli-26cm",
+      "name": "Çiftli 26cm",
+      "category": "mekanizma",
+      "image": "images/products/ciftli-26cm.jpg"
+    },
+    {
+      "id": "6-kademeli-baslik",
+      "name": "6 Kademeli Başlık",
+      "category": "mekanizma",
+      "image": "images/products/6-kademeli-baslik.jpg"
+    },
+    {
+      "id": "doner-mekanizma",
+      "name": "Döner Mekanizma",
+      "category": "mekanizma",
+      "image": "images/products/doner-mekanizma.jpg"
+    },
+    {
+      "id": "sirt-atlama",
+      "name": "Sırt Atlama",
+      "category": "mekanizma",
+      "image": "images/products/sirt-atlama.jpg"
+    },
+    {
+      "id": "baza-makasi",
+      "name": "Baza Makası",
+      "category": "mekanizma",
+      "image": "images/products/baza-makasi.jpg"
+    },
+    {
+      "id": "sirt-kaldirma",
+      "name": "Sırt Kaldırma",
+      "category": "mekanizma",
+      "image": "images/products/sirt-kaldirma.jpg"
+    },
+    {
+      "id": "piston-750-1200",
+      "name": "Piston (750N–1000N–1200N)",
+      "category": "piston",
+      "image": "images/products/piston.jpg"
+    },
+    {
+      "id": "z-makas",
+      "name": "Z Makas",
+      "category": "piston",
+      "image": "images/products/z-makas.jpg"
+    },
+    {
+      "id": "baza-kizak",
+      "name": "Baza Kızak (12–15–19cm)",
+      "category": "piston",
+      "image": "images/products/baza-kizak.jpg"
+    },
+    {
+      "id": "sandik-makasi",
+      "name": "Sandık Makası",
+      "category": "piston",
+      "image": "images/products/sandik-makasi.jpg"
+    },
+    {
+      "id": "baglanti-saci",
+      "name": "Bağlantı Sacı (7x7–10x10)",
+      "category": "piston",
+      "image": "images/products/baglanti-saci.jpg"
+    },
+    {
+      "id": "elastik-kolon",
+      "name": "Elastik Kolon (5cm/7cm)",
+      "category": "piston",
+      "image": "images/products/elastik-kolon.jpg"
+    },
+    {
+      "id": "birlestirme",
+      "name": "Birleştirme",
+      "category": "piston",
+      "image": "images/products/birlestirme.jpg"
+    },
+    {
+      "id": "genel-aksesuar",
+      "name": "Genel Aksesuarlar",
+      "category": "piston",
+      "image": "images/products/genel-aksesuar.jpg"
+    },
+    {
+      "id": "kilic-ayak",
+      "name": "Kılıç Ayak",
+      "category": "koltuk",
+      "image": "images/products/kilic-ayak.jpg"
+    },
+    {
+      "id": "sahin-ayak",
+      "name": "Şahin Ayak",
+      "category": "koltuk",
+      "image": "images/products/sahin-ayak.jpg"
+    },
+    {
+      "id": "kartal-ayak",
+      "name": "Kartal Ayak",
+      "category": "koltuk",
+      "image": "images/products/kartal-ayak.jpg"
+    },
+    {
+      "id": "catal-ayak",
+      "name": "Çatal Ayak",
+      "category": "koltuk",
+      "image": "images/products/catal-ayak.jpg"
+    },
+    {
+      "id": "mil-ayak",
+      "name": "Mil Ayak",
+      "category": "koltuk",
+      "image": "images/products/mil-ayak.jpg"
+    },
+    {
+      "id": "konik-ayak",
+      "name": "Konik Ayak",
+      "category": "koltuk",
+      "image": "images/products/konik-ayak.jpg"
+    },
+    {
+      "id": "tekne-ayak",
+      "name": "Tekne Ayak",
+      "category": "koltuk",
+      "image": "images/products/tekne-ayak.jpg"
+    },
+    {
+      "id": "bonj-ayaklar",
+      "name": "Bonj Ayaklar",
+      "category": "koltuk",
+      "image": "images/products/bonj-ayaklar.jpg"
+    },
+    {
+      "id": "lama-ayak",
+      "name": "Lama Ayak",
+      "category": "koltuk",
+      "image": "images/products/lama-ayak.jpg"
+    },
+    {
+      "id": "omurga-mekanizma-39cm",
+      "name": "Omurga Mekanizma (39cm)",
+      "category": "mekanizma",
+      "image": "images/products/omurga-mekanizma-39cm.jpg"
+    }
   ]
 }
