@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AB Malzemecilik — Koltuk &amp; Mobilya Yan Sanayi Malzemeleri</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,500;1,600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --steel:#1e2024;
@@ -58,8 +58,25 @@
   .btn-primary:hover{background:var(--brass-light);transform:translateY(-2px);}
   .btn-ghost{border:1px solid #6b6f75;color:var(--paper);background:none;}
   .btn-ghost:hover{border-color:var(--paper);transform:translateY(-2px);}
-  .hero-img{align-self:end;display:flex;justify-content:center;}
+  .hero-img{align-self:end;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;}
+  .hero-tagline{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:500;
+    font-size:clamp(20px,2.4vw,28px);color:var(--brass-light);
+    text-align:center;line-height:1.35;margin-bottom:28px;
+    max-width:380px;
+  }
+  html[dir="rtl"] .hero-tagline{font-family:'Cairo',sans-serif;font-style:normal;font-weight:600;}
   .hero-img img{width:100%;max-width:440px;margin:0 auto;border-radius:4px 4px 0 0;image-rendering:auto;}
+
+  /* ---------- LANGUAGE SWITCH ---------- */
+  .lang-switch{display:flex;gap:4px;margin-inline-start:20px;}
+  .lang-btn{
+    background:none;border:1px solid #5a5d63;color:#c9cbce;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;
+    padding:6px 9px;cursor:pointer;letter-spacing:0.03em;transition:all .15s ease;
+  }
+  .lang-btn:hover{border-color:var(--brass-light);color:var(--paper);}
+  .lang-btn.active{background:var(--brass);border-color:var(--brass);color:var(--steel);}
 
   /* ---------- SECTION HEADS ---------- */
   .section{padding:84px 0;}
@@ -102,6 +119,11 @@
     padding:2px;
   }
   .product-thumb img{width:100%;height:100%;object-fit:contain;}
+  .product-name{
+    display:block;text-align:center;
+    font-size:12.5px;font-weight:600;color:var(--ink);
+    padding:8px 2px 0;line-height:1.3;
+  }
 
   /* ---------- WHY ---------- */
   .why-band{background:var(--steel-soft);color:var(--paper);}
@@ -175,13 +197,20 @@
     <a href="#anasayfa"><img class="logo-img" src="images/logo.png" alt="AB Malzemecilik logo"></a>
     <nav>
       <ul>
-        <li><a href="#anasayfa">Anasayfa</a></li>
-        <li><a href="#urunler">Ürünler</a></li>
-        <li><a href="#hakkimizda">Hakkımızda</a></li>
-        <li><a href="#iletisim">İletişim</a></li>
+        <li><a href="#anasayfa" data-i18n="nav_home">Anasayfa</a></li>
+        <li><a href="#urunler" data-i18n="nav_products">Ürünler</a></li>
+        <li><a href="#hakkimizda" data-i18n="nav_about">Hakkımızda</a></li>
+        <li><a href="#iletisim" data-i18n="nav_contact">İletişim</a></li>
       </ul>
     </nav>
-    <a class="header-cta" href="https://wa.me/905366247756" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+    <div style="display:flex;align-items:center;">
+      <a class="header-cta" href="https://wa.me/905366247756" target="_blank" rel="noopener" data-i18n="nav_whatsapp">WhatsApp'tan Yaz</a>
+      <div class="lang-switch" id="lang-switch">
+        <button class="lang-btn" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+      </div>
+    </div>
   </div>
 </header>
 <div class="stripe-rule"></div>
@@ -189,15 +218,16 @@
 <section class="hero" id="anasayfa">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow-tag">TOPTAN SATIŞ · HIZLI SEVKİYAT</span>
-      <h1>Koltuk ve mobilya<br>yan sanayine <span>tam destek.</span></h1>
-      <p class="lead">Berjer ayağından mekanizmaya, pistondan aksesuara kadar üreticinin ihtiyaç duyduğu her parça AB Malzemecilik'te.</p>
+      <span class="eyebrow-tag" data-i18n="hero_eyebrow">TOPTAN SATIŞ · HIZLI SEVKİYAT</span>
+      <h1 data-i18n-html="hero_title">Koltuk ve mobilya<br>yan sanayine <span>tam destek.</span></h1>
+      <p class="lead" data-i18n="hero_lead">Berjer ayağından mekanizmaya, pistondan aksesuara kadar üreticinin ihtiyaç duyduğu her parça AB Malzemecilik'te.</p>
       <div class="btn-row">
-        <a href="https://wa.me/905366247756" target="_blank" rel="noopener" class="btn btn-primary">WhatsApp'tan Sipariş</a>
-        <a href="#urunler" class="btn btn-ghost">Ürünleri İncele</a>
+        <a href="https://wa.me/905366247756" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="hero_btn_order">WhatsApp'tan Sipariş</a>
+        <a href="#urunler" class="btn btn-ghost" data-i18n="hero_btn_products">Ürünleri İncele</a>
       </div>
     </div>
     <div class="hero-img">
+      <p class="hero-tagline" data-i18n="hero_tagline">Mobilya'da Metal Değişim.</p>
       <img src="images/hero-sofa.jpg" alt="AB Malzemecilik üretim örneği koltuk">
     </div>
   </div>
@@ -207,17 +237,17 @@
   <div class="wrap">
     <div class="about-grid">
       <div>
-        <span class="kicker">Hakkımızda</span>
-        <h2>Mobilya üreticisinin<br>güvendiği tedarikçi</h2>
+        <span class="kicker" data-i18n="about_kicker">Hakkımızda</span>
+        <h2 data-i18n-html="about_title">Mobilya üreticisinin<br>güvendiği tedarikçi</h2>
       </div>
       <div>
-        <p>AB Malzemecilik olarak koltuk ve mobilya yan sanayine yönelik metal ayak, mekanizma, piston ve bağlantı aksesuarları tedarik ediyoruz. Berjer ve koltuk üreticilerinin ihtiyaç duyduğu geniş ürün gamını tek noktadan sunuyoruz.</p>
-        <p>Farklı ölçü ve modellerdeki ayak ve mekanizma seçenekleriyle üretim hattınızın aksamadan devam etmesini sağlıyoruz.</p>
+        <p data-i18n="about_p1">AB Malzemecilik olarak koltuk ve mobilya yan sanayine yönelik metal ayak, mekanizma, piston ve bağlantı aksesuarları tedarik ediyoruz. Berjer ve koltuk üreticilerinin ihtiyaç duyduğu geniş ürün gamını tek noktadan sunuyoruz.</p>
+        <p data-i18n="about_p2">Farklı ölçü ve modellerdeki ayak ve mekanizma seçenekleriyle üretim hattınızın aksamadan devam etmesini sağlıyoruz.</p>
         <div class="stat-list">
-          <div class="stat"><div class="num">4</div><div class="label">Ana Ürün Grubu</div></div>
-          <div class="stat"><div class="num">33+</div><div class="label">Parça Çeşidi</div></div>
-          <div class="stat"><div class="num">Hızlı</div><div class="label">Sevkiyat</div></div>
-          <div class="stat"><div class="num">Toptan</div><div class="label">Satış</div></div>
+          <div class="stat"><div class="num">4</div><div class="label" data-i18n="stat_1">Ana Ürün Grubu</div></div>
+          <div class="stat"><div class="num">33+</div><div class="label" data-i18n="stat_2">Parça Çeşidi</div></div>
+          <div class="stat"><div class="num" data-i18n="stat_3_num">Hızlı</div><div class="label" data-i18n="stat_3">Sevkiyat</div></div>
+          <div class="stat"><div class="num" data-i18n="stat_4_num">Toptan</div><div class="label" data-i18n="stat_4">Satış</div></div>
         </div>
       </div>
     </div>
@@ -229,12 +259,12 @@
 <section class="section" id="urunler" style="background:#fff;">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">Ürün Grupları</span>
-      <h2>Katalog</h2>
-      <p>Bir görsele tıklayarak ürünü büyük boyutta görebilirsiniz.</p>
+      <span class="kicker" data-i18n="catalog_kicker">Ürün Grupları</span>
+      <h2 data-i18n="catalog_title">Katalog</h2>
+      <p data-i18n="catalog_lead">Bir görsele tıklayarak ürünü büyük boyutta görebilirsiniz.</p>
     </div>
     <div id="catalog-root">
-      <p class="mono" style="color:#8a8d92;font-size:13px;">Ürünler yükleniyor...</p>
+      <p class="mono" style="color:#8a8d92;font-size:13px;" data-i18n="catalog_loading">Ürünler yükleniyor...</p>
     </div>
   </div>
 </section>
@@ -242,14 +272,14 @@
 <section class="section why-band">
   <div class="wrap">
     <div class="section-head" style="color:var(--paper);">
-      <span class="kicker" style="color:var(--brass-light);">Neden AB Malzemecilik</span>
-      <h2>Üreticinin yanında</h2>
+      <span class="kicker" style="color:var(--brass-light);" data-i18n="why_kicker">Neden AB Malzemecilik</span>
+      <h2 data-i18n="why_title">Üreticinin yanında</h2>
     </div>
     <div class="why-grid">
-      <div class="why-item"><span class="why-num">01</span><h3>Geniş Ürün Gamı</h3><p>33'ten fazla ayak, mekanizma ve aksesuar çeşidi tek noktada.</p></div>
-      <div class="why-item"><span class="why-num">02</span><h3>Toptan Fiyat</h3><p>Üretici ve atölyelere özel toptan satış avantajı.</p></div>
-      <div class="why-item"><span class="why-num">03</span><h3>Hızlı Sevkiyat</h3><p>Siparişleriniz kısa sürede hazırlanır ve gönderilir.</p></div>
-      <div class="why-item"><span class="why-num">04</span><h3>WhatsApp Destek</h3><p>Sipariş ve stok sorularınıza anında dönüş.</p></div>
+      <div class="why-item"><span class="why-num">01</span><h3 data-i18n="why_1_h">Geniş Ürün Gamı</h3><p data-i18n="why_1_p">33'ten fazla ayak, mekanizma ve aksesuar çeşidi tek noktada.</p></div>
+      <div class="why-item"><span class="why-num">02</span><h3 data-i18n="why_2_h">Toptan Fiyat</h3><p data-i18n="why_2_p">Üretici ve atölyelere özel toptan satış avantajı.</p></div>
+      <div class="why-item"><span class="why-num">03</span><h3 data-i18n="why_3_h">Hızlı Sevkiyat</h3><p data-i18n="why_3_p">Siparişleriniz kısa sürede hazırlanır ve gönderilir.</p></div>
+      <div class="why-item"><span class="why-num">04</span><h3 data-i18n="why_4_h">WhatsApp Destek</h3><p data-i18n="why_4_p">Sipariş ve stok sorularınıza anında dönüş.</p></div>
     </div>
   </div>
 </section>
@@ -257,18 +287,18 @@
 <section class="section" id="iletisim">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">İletişim</span>
-      <h2>Bize ulaşın</h2>
-      <p>Sipariş, stok durumu veya fiyat teklifi için WhatsApp üzerinden hızlıca yazabilirsiniz.</p>
+      <span class="kicker" data-i18n="contact_kicker">İletişim</span>
+      <h2 data-i18n="contact_title">Bize ulaşın</h2>
+      <p data-i18n="contact_lead">Sipariş, stok durumu veya fiyat teklifi için WhatsApp üzerinden hızlıca yazabilirsiniz.</p>
     </div>
     <div class="contact-grid">
       <div>
-        <div class="info-line"><span class="k">Telefon</span><span class="v">+90 536 624 77 56</span></div>
+        <div class="info-line"><span class="k" data-i18n="contact_phone">Telefon</span><span class="v">+90 536 624 77 56</span></div>
         <div class="info-line"><span class="k">WhatsApp</span><span class="v">+90 536 624 77 56</span></div>
         <div class="info-line"><span class="k">Facebook</span><span class="v">facebook.com/abmalzeme</span></div>
         <div class="contact-buttons">
-          <a class="wa-btn" href="https://wa.me/905366247756" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
-          <a class="fb-btn" href="https://www.facebook.com/abmalzeme/" target="_blank" rel="noopener">Facebook'ta Takip Et</a>
+          <a class="wa-btn" href="https://wa.me/905366247756" target="_blank" rel="noopener" data-i18n="nav_whatsapp">WhatsApp'tan Yaz</a>
+          <a class="fb-btn" href="https://www.facebook.com/abmalzeme/" target="_blank" rel="noopener" data-i18n="contact_fb">Facebook'ta Takip Et</a>
         </div>
       </div>
       <div class="contact-logo">
@@ -281,19 +311,134 @@
 <footer>
   <div class="wrap">
     <img class="logo-img" src="images/logo.png" alt="AB Malzemecilik logo">
-    <small>© 2026 AB Malzemecilik. Tüm hakları saklıdır.</small>
+    <small data-i18n="footer_rights">© 2026 AB Malzemecilik. Tüm hakları saklıdır.</small>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox" hidden>
   <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Kapat">×</button>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Kapat" data-i18n-aria="lightbox_close">×</button>
     <img id="lightbox-img" src="" alt="">
     <p class="lightbox-caption" id="lightbox-caption"></p>
   </div>
 </div>
 
 <script>
+  // ---------------- i18n ----------------
+  const I18N = {
+    tr: {
+      nav_home:'Anasayfa', nav_products:'Ürünler', nav_about:'Hakkımızda', nav_contact:'İletişim', nav_whatsapp:"WhatsApp'tan Yaz",
+      hero_tagline:"Mobilya'da Metal Değişim.",
+      hero_eyebrow:'TOPTAN SATIŞ · HIZLI SEVKİYAT',
+      hero_title:'Koltuk ve mobilya<br>yan sanayine <span>tam destek.</span>',
+      hero_lead:"Berjer ayağından mekanizmaya, pistondan aksesuara kadar üreticinin ihtiyaç duyduğu her parça AB Malzemecilik'te.",
+      hero_btn_order:"WhatsApp'tan Sipariş", hero_btn_products:'Ürünleri İncele',
+      about_kicker:'Hakkımızda', about_title:'Mobilya üreticisinin<br>güvendiği tedarikçi',
+      about_p1:"AB Malzemecilik olarak koltuk ve mobilya yan sanayine yönelik metal ayak, mekanizma, piston ve bağlantı aksesuarları tedarik ediyoruz. Berjer ve koltuk üreticilerinin ihtiyaç duyduğu geniş ürün gamını tek noktadan sunuyoruz.",
+      about_p2:'Farklı ölçü ve modellerdeki ayak ve mekanizma seçenekleriyle üretim hattınızın aksamadan devam etmesini sağlıyoruz.',
+      stat_1:'Ana Ürün Grubu', stat_2:'Parça Çeşidi', stat_3_num:'Hızlı', stat_3:'Sevkiyat', stat_4_num:'Toptan', stat_4:'Satış',
+      catalog_kicker:'Ürün Grupları', catalog_title:'Katalog', catalog_lead:'Bir görsele tıklayarak ürünü büyük boyutta görebilirsiniz.',
+      catalog_loading:'Ürünler yükleniyor...', catalog_error:'Ürünler yüklenemedi. Sayfayı bir web sunucusu üzerinden açtığınızdan emin olun.',
+      product_suffix:'ürün',
+      why_kicker:'Neden AB Malzemecilik', why_title:'Üreticinin yanında',
+      why_1_h:'Geniş Ürün Gamı', why_1_p:'33\'ten fazla ayak, mekanizma ve aksesuar çeşidi tek noktada.',
+      why_2_h:'Toptan Fiyat', why_2_p:'Üretici ve atölyelere özel toptan satış avantajı.',
+      why_3_h:'Hızlı Sevkiyat', why_3_p:'Siparişleriniz kısa sürede hazırlanır ve gönderilir.',
+      why_4_h:'WhatsApp Destek', why_4_p:'Sipariş ve stok sorularınıza anında dönüş.',
+      contact_kicker:'İletişim', contact_title:'Bize ulaşın', contact_lead:'Sipariş, stok durumu veya fiyat teklifi için WhatsApp üzerinden hızlıca yazabilirsiniz.',
+      contact_phone:'Telefon', contact_fb:"Facebook'ta Takip Et",
+      footer_rights:'© 2026 AB Malzemecilik. Tüm hakları saklıdır.',
+      lightbox_close:'Kapat'
+    },
+    en: {
+      nav_home:'Home', nav_products:'Products', nav_about:'About', nav_contact:'Contact', nav_whatsapp:'Message on WhatsApp',
+      hero_tagline:'Metal Change in Furniture.',
+      hero_eyebrow:'WHOLESALE · FAST SHIPPING',
+      hero_title:'Full support for the<br>furniture <span>supply industry.</span>',
+      hero_lead:'From recliner legs to mechanisms, from pistons to fittings — every part a manufacturer needs, at AB Malzemecilik.',
+      hero_btn_order:'Order on WhatsApp', hero_btn_products:'Browse Products',
+      about_kicker:'About Us', about_title:'The supplier furniture<br>makers rely on',
+      about_p1:'AB Malzemecilik supplies metal legs, mechanisms, pistons and connection fittings for the furniture and upholstery industry. We bring the wide range that recliner and sofa manufacturers need under one roof.',
+      about_p2:'With legs and mechanisms in a range of sizes and models, we keep your production line running without interruption.',
+      stat_1:'Main Categories', stat_2:'Part Varieties', stat_3_num:'Fast', stat_3:'Shipping', stat_4_num:'Wholesale', stat_4:'Pricing',
+      catalog_kicker:'Product Groups', catalog_title:'Catalog', catalog_lead:'Click any photo to view the product in full size.',
+      catalog_loading:'Loading products...', catalog_error:'Products could not be loaded. Please make sure the page is served over a web server.',
+      product_suffix:'items',
+      why_kicker:'Why AB Malzemecilik', why_title:'On the manufacturer\'s side',
+      why_1_h:'Wide Product Range', why_1_p:'Over 33 types of legs, mechanisms and fittings in one place.',
+      why_2_h:'Wholesale Pricing', why_2_p:'Special wholesale advantage for manufacturers and workshops.',
+      why_3_h:'Fast Shipping', why_3_p:'Your orders are prepared and shipped quickly.',
+      why_4_h:'WhatsApp Support', why_4_p:'Instant replies to your order and stock questions.',
+      contact_kicker:'Contact', contact_title:'Get in touch', contact_lead:'For orders, stock status or price quotes, message us quickly on WhatsApp.',
+      contact_phone:'Phone', contact_fb:'Follow on Facebook',
+      footer_rights:'© 2026 AB Malzemecilik. All rights reserved.',
+      lightbox_close:'Close'
+    },
+    ar: {
+      nav_home:'الرئيسية', nav_products:'المنتجات', nav_about:'من نحن', nav_contact:'اتصل بنا', nav_whatsapp:'راسلنا عبر واتساب',
+      hero_tagline:'التحول المعدني في الأثاث.',
+      hero_eyebrow:'بيع بالجملة · شحن سريع',
+      hero_title:'دعم كامل لصناعة<br>الأثاث <span>ومستلزماتها.</span>',
+      hero_lead:'من أرجل البرجير إلى الآليات، ومن المكابس إلى الملحقات — كل قطعة يحتاجها المصنّع، تجدها لدى AB Malzemecilik.',
+      hero_btn_order:'اطلب عبر واتساب', hero_btn_products:'تصفح المنتجات',
+      about_kicker:'من نحن', about_title:'المورد الذي يثق به<br>مصنّعو الأثاث',
+      about_p1:'نقوم في AB Malzemecilik بتوريد أرجل معدنية وآليات ومكابس وملحقات تثبيت لصناعة الأثاث والمفروشات. نقدّم مجموعة واسعة يحتاجها مصنّعو الكنب والمقاعد في مكان واحد.',
+      about_p2:'بفضل خيارات متعددة من الأرجل والآليات بمقاسات وموديلات مختلفة، نضمن استمرار خط إنتاجكم دون توقف.',
+      stat_1:'مجموعات رئيسية', stat_2:'أنواع القطع', stat_3_num:'سريع', stat_3:'الشحن', stat_4_num:'جملة', stat_4:'الأسعار',
+      catalog_kicker:'مجموعات المنتجات', catalog_title:'الكتالوج', catalog_lead:'اضغط على أي صورة لعرض المنتج بحجم كبير.',
+      catalog_loading:'جاري تحميل المنتجات...', catalog_error:'تعذّر تحميل المنتجات. يرجى التأكد من فتح الصفحة عبر خادم ويب.',
+      product_suffix:'منتج',
+      why_kicker:'لماذا AB Malzemecilik', why_title:'بجانب المصنّع دائمًا',
+      why_1_h:'تشكيلة واسعة', why_1_p:'أكثر من 33 نوعًا من الأرجل والآليات والملحقات في مكان واحد.',
+      why_2_h:'أسعار الجملة', why_2_p:'ميزة بيع بالجملة خاصة للمصنّعين والورش.',
+      why_3_h:'شحن سريع', why_3_p:'يتم تجهيز طلباتكم وشحنها بسرعة.',
+      why_4_h:'دعم عبر واتساب', why_4_p:'ردود فورية على أسئلتكم حول الطلبات والمخزون.',
+      contact_kicker:'اتصل بنا', contact_title:'تواصل معنا', contact_lead:'للطلبات أو حالة المخزون أو عروض الأسعار، راسلنا بسرعة عبر واتساب.',
+      contact_phone:'الهاتف', contact_fb:'تابعنا على فيسبوك',
+      footer_rights:'© 2026 AB Malzemecilik. جميع الحقوق محفوظة.',
+      lightbox_close:'إغلاق'
+    }
+  };
+
+  const CATEGORY_I18N = {
+    berjer:   { tr:'Berjer Metal Ayaklar', en:'Recliner Metal Bases', ar:'أرجل معدنية للبرجير' },
+    mekanizma:{ tr:'Mekanizmalar', en:'Mechanisms', ar:'الآليات' },
+    piston:   { tr:'Piston & Aksesuar', en:'Pistons & Fittings', ar:'مكابس وملحقات' },
+    koltuk:   { tr:'Koltuk Metal Ayaklar', en:'Sofa Metal Legs', ar:'أرجل معدنية للكنب' }
+  };
+
+  let currentLang = localStorage.getItem('ab_lang') || 'tr';
+
+  function applyLanguage(lang){
+    currentLang = lang;
+    localStorage.setItem('ab_lang', lang);
+    const dict = I18N[lang] || I18N.tr;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      const key = el.getAttribute('data-i18n-html');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      const key = el.getAttribute('data-i18n-aria');
+      if(dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    renderCatalog();
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLanguage(btn.dataset.lang); });
+  });
+
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
   const lbCaption = document.getElementById('lightbox-caption');
@@ -310,42 +455,54 @@
       lbClose.focus();
     });
   }
+  let catalogData = null;
+
+  function renderCatalog(){
+    const root = document.getElementById('catalog-root');
+    if(!root || !catalogData) return;
+    const dict = I18N[currentLang] || I18N.tr;
+    root.innerHTML = '';
+    catalogData.categories.forEach(function(cat, idx){
+      const items = catalogData.products.filter(function(p){ return p.category === cat.id; });
+      if(items.length === 0) return;
+      const catTitle = (CATEGORY_I18N[cat.id] && CATEGORY_I18N[cat.id][currentLang]) || cat.title;
+      const heading = document.createElement('div');
+      heading.className = 'cat-heading';
+      heading.innerHTML = '<span class="cat-code">GRUP.' + String(idx+1).padStart(2,'0') + '</span><h3>' + catTitle + '</h3><span class="cat-count">' + items.length + ' ' + dict.product_suffix + '</span>';
+      root.appendChild(heading);
+
+      const grid = document.createElement('div');
+      grid.className = 'product-grid';
+      items.forEach(function(p){
+        const btn = document.createElement('button');
+        btn.className = 'product-card';
+        btn.dataset.img = p.image;
+        btn.dataset.name = p.name;
+        btn.innerHTML = '<span class="product-thumb"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></span><span class="product-name">' + p.name + '</span>';
+        bindCard(btn);
+        grid.appendChild(btn);
+      });
+      root.appendChild(grid);
+    });
+  }
+
   document.querySelectorAll('.product-card').forEach(bindCard);
 
   // ---- Katalogu data/products.json'dan yükle ----
   fetch('data/products.json?_=' + Date.now())
     .then(function(r){ return r.json(); })
     .then(function(data){
-      const root = document.getElementById('catalog-root');
-      if(!root) return;
-      root.innerHTML = '';
-      data.categories.forEach(function(cat, idx){
-        const items = data.products.filter(function(p){ return p.category === cat.id; });
-        if(items.length === 0) return;
-        const heading = document.createElement('div');
-        heading.className = 'cat-heading';
-        heading.innerHTML = '<span class="cat-code">GRUP.' + String(idx+1).padStart(2,'0') + '</span><h3>' + cat.title + '</h3><span class="cat-count">' + items.length + ' ürün</span>';
-        root.appendChild(heading);
-
-        const grid = document.createElement('div');
-        grid.className = 'product-grid';
-        items.forEach(function(p){
-          const btn = document.createElement('button');
-          btn.className = 'product-card';
-          btn.dataset.img = p.image;
-          btn.dataset.name = p.name;
-          btn.innerHTML = '<span class="product-thumb"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></span>';
-          bindCard(btn);
-          grid.appendChild(btn);
-        });
-        root.appendChild(grid);
-      });
+      catalogData = data;
+      renderCatalog();
     })
     .catch(function(err){
       const root = document.getElementById('catalog-root');
-      if(root) root.innerHTML = '<p class="mono" style="color:#b8862f;font-size:13px;">Ürünler yüklenemedi. Sayfayı bir web sunucusu üzerinden açtığınızdan emin olun (dosyayı doğrudan çift tıklayarak açmak bu bölümü çalıştırmaz).</p>';
+      const dict = I18N[currentLang] || I18N.tr;
+      if(root) root.innerHTML = '<p class="mono" style="color:#b8862f;font-size:13px;">' + dict.catalog_error + '</p>';
       console.error(err);
     });
+
+  applyLanguage(currentLang);
 
   function closeLightbox(){
     lightbox.hidden = true;
