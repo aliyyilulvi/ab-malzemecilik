@@ -79,12 +79,6 @@
       "image": "images/products/6-kademeli-baslik.jpg"
     },
     {
-      "id": "sirt-atlama",
-      "name": "Sırt Atlama",
-      "category": "mekanizma",
-      "image": "images/products/sirt-atlama.jpg"
-    },
-    {
       "id": "baza-makasi",
       "name": "Baza Makası",
       "category": "mekanizma",
