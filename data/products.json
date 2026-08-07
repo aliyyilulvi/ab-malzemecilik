@@ -215,6 +215,12 @@
       "name": "Çiftli Mekanizma 22cm",
       "category": "mekanizma",
       "image": "images/products/ciftli-mekanizma-22cm.jpg"
+    },
+    {
+      "id": "css-sirt-mekanizmasi",
+      "name": "CSS Sırt Mekanizması",
+      "category": "mekanizma",
+      "image": "images/products/css-sirt-mekanizmasi.jpg"
     }
   ]
 }
